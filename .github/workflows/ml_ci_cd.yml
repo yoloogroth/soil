@@ -25,8 +25,10 @@ jobs:
 
     - name: train model
       run: python model/train.py
+    - name: ls
+      run: ls
     - name: docker build
-      run: docker build -t ${{secrets.DOCKER_USER}}/${{secrets.MODEL_NAME}}:${{github.event.client_payload.sha}} .
+      run: docker build -t ${{secrets.DOCKER_USER}}/${{secrets.MODEL_NAME}}:${{github.event.client_payload.sha}} -f Dockerfile .
     - name: docker login
       env:
         DOCKER_USER: ${{secrets.DOCKER_USER}}
