@@ -28,7 +28,7 @@ jobs:
     - name: ls
       run: ls
     - name: docker build
-      run: docker build -t bbygbgy .
+      run: docker build -t ${{secrets.DOCKER_USER}}/${{secrets.MODEL_NAME}}:${{github.event.client_payload.sha}} .
     - name: docker login
       env:
         DOCKER_USER: ${{secrets.DOCKER_USER}}
